@@ -44,19 +44,22 @@ body{overflow-y:auto}
 <div class="b" style="--c:#00e5ff"><div class="n" id="m">00</div><div class="l">MINUTES</div></div>
 <div class="b" style="--c:#ff4fa0"><div class="n" id="s">00</div><div class="l">SECONDS</div></div>
 </div><div id="u">Time's up!</div></main>
-<audio id="au" src="music.mp3" loop preload="none"></audio>
+<audio id="au" src="music.mp3?v=techno1" loop preload="none"></audio>
 <button id="mb" aria-label="Play music">&#9654;</button>
 <script>
 (function(){var a=document.getElementById('au'),b=document.getElementById('mb');b.onclick=function(){if(a.paused){a.play();b.innerHTML='&#10074;&#10074;';b.classList.add('on');b.setAttribute('aria-label','Pause music')}else{a.pause();b.innerHTML='&#9654;';b.classList.remove('on');b.setAttribute('aria-label','Play music')}}})();
 
+function takedown(){var a=document.getElementById('au');if(a){try{a.pause();a.removeAttribute('src');a.load()}catch(e){}}
+for(var k=1;k<99999;k++)clearInterval(k);document.documentElement.style.background='#000';document.body.removeAttribute('style');document.body.className='';
+document.body.innerHTML='';document.body.style.cssText='margin:0;background:#000;animation:none;min-height:100vh';window.__down=1}
 var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
 function set(id,v){var e=document.getElementById(id);if(e.textContent!=v){e.textContent=v;e.classList.remove('tick');void e.offsetWidth;e.classList.add('tick')}}
-function t(){var r=Math.floor((T-Date.now())/1000);if(r<=0){document.getElementById('c').style.display='none';document.getElementById('u').style.display='block';return}
+function t(){var r=Math.floor((T-Date.now())/1000);if(r<=0){takedown();return}
 set('d',''+Math.floor(r/86400));set('h',p(Math.floor(r%86400/3600)));set('m',p(Math.floor(r%3600/60)));set('s',p(r%60))}
 t();setInterval(t,1000);
-(function(){var c=document.getElementById('p'),x=c.getContext('2d'),P=[],C=['#ff2bd6','#00e5ff','#b04bff'];
+(function(){if(window.__down)return;var c=document.getElementById('p'),x=c.getContext('2d'),P=[],C=['#ff2bd6','#00e5ff','#b04bff'];
 function rs(){c.width=innerWidth;c.height=innerHeight}rs();addEventListener('resize',rs);
 for(var i=0;i<45;i++)P.push({x:Math.random(),y:Math.random(),r:1+Math.random()*2.5,v:.0004+Math.random()*.0012,c:C[i%3]});
 (function f(){x.clearRect(0,0,c.width,c.height);P.forEach(function(q){q.y-=q.v;if(q.y<0)q.y=1;x.beginPath();x.fillStyle=q.c;x.shadowColor=q.c;x.shadowBlur=12;
-x.arc(q.x*c.width,q.y*c.height,q.r,0,7);x.fill()});requestAnimationFrame(f)})()})();
+x.arc(q.x*c.width,q.y*c.height,q.r,0,7);x.fill()});if(!window.__down)requestAnimationFrame(f)})()})();
 </script></body></html>
