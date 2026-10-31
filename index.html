@@ -53,7 +53,7 @@ window.__arm=arm;window.__try=function(){if(window.__down)return;var p=a.play();
 function takedown(){var a=document.getElementById('au');if(a){try{a.pause();a.removeAttribute('src');a.load()}catch(e){}}
 for(var k=1;k<99999;k++)clearInterval(k);document.documentElement.style.background='#000';document.body.removeAttribute('style');document.body.className='';
 document.body.innerHTML='';document.body.style.cssText='margin:0;background:#000;animation:none;min-height:100vh';window.__down=1}
-var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
+var T=Date.UTC(2026,10,2,6,0,0);function p(x){return(x<10?'0':'')+x}
 function set(id,v){var e=document.getElementById(id);if(e.textContent!=v){e.textContent=v;e.classList.remove('tick');void e.offsetWidth;e.classList.add('tick')}}
 function t(){var r=Math.floor((T-Date.now())/1000);if(r<=0){takedown();return}
 set('d',''+Math.floor(r/86400));set('h',p(Math.floor(r%86400/3600)));set('m',p(Math.floor(r%3600/60)));set('s',p(r%60))}
