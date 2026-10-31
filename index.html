@@ -27,6 +27,8 @@ text-shadow:0 0 5px #fff,0 0 12px var(--c),0 0 28px var(--c),0 0 50px var(--c)}
 @keyframes tick{0%{transform:scale(1.18);filter:brightness(1.8)}100%{transform:scale(1);filter:none}}
 #u{display:none;font-size:clamp(3rem,13vw,8rem);color:#fff;text-shadow:0 0 8px #fff,0 0 22px #0ff,0 0 44px #ff2bd6;animation:pulse 1s infinite}
 body{overflow-y:auto}
+#mb{position:fixed;right:16px;bottom:16px;z-index:2;width:56px;height:56px;border-radius:50%;border:2px solid #00e5ff;background:rgba(10,0,30,.7);color:#fff;font-size:22px;cursor:pointer;box-shadow:0 0 12px #00e5ff,inset 0 0 10px #ff2bd6;text-shadow:0 0 8px #00e5ff}
+#mb.on{border-color:#ff2bd6;box-shadow:0 0 18px #ff2bd6,inset 0 0 12px #00e5ff;animation:pulse 1.6s infinite}
 </style></head><body>
 <canvas id="p"></canvas>
 <main><p class="kick">COUNTDOWN TO</p><h1>November 1st</h1>
@@ -36,7 +38,11 @@ body{overflow-y:auto}
 <div class="b" style="--c:#00e5ff"><div class="n" id="m">00</div><div class="l">MINUTES</div></div>
 <div class="b" style="--c:#ff4fa0"><div class="n" id="s">00</div><div class="l">SECONDS</div></div>
 </div><div id="u">Time's up!</div></main>
+<audio id="au" src="music.mp3" loop preload="none"></audio>
+<button id="mb" aria-label="Play music">&#9654;</button>
 <script>
+(function(){var a=document.getElementById('au'),b=document.getElementById('mb');b.onclick=function(){if(a.paused){a.play();b.innerHTML='&#10074;&#10074;';b.classList.add('on');b.setAttribute('aria-label','Pause music')}else{a.pause();b.innerHTML='&#9654;';b.classList.remove('on');b.setAttribute('aria-label','Play music')}}})();
+
 var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
 function set(id,v){var e=document.getElementById(id);if(e.textContent!=v){e.textContent=v;e.classList.remove('tick');void e.offsetWidth;e.classList.add('tick')}}
 function t(){var r=Math.floor((T-Date.now())/1000);if(r<=0){document.getElementById('c').style.display='none';document.getElementById('u').style.display='block';return}
