@@ -26,15 +26,19 @@ text-shadow:0 0 5px #fff,0 0 12px var(--c),0 0 28px var(--c),0 0 50px var(--c)}
 .tick{animation:tick .45s ease-out}
 @keyframes tick{0%{transform:scale(1.18);filter:brightness(1.8)}100%{transform:scale(1);filter:none}}
 #u{display:none;font-size:clamp(3rem,13vw,8rem);color:#fff;text-shadow:0 0 8px #fff,0 0 22px #0ff,0 0 44px #ff2bd6;animation:pulse 1s infinite}
+.theme{margin:0 0 .6em;font-size:clamp(1.3rem,5vw,2.6rem);color:#fff;letter-spacing:.06em;text-shadow:0 0 6px #fff,0 0 14px #00e5ff,0 0 30px #b04bff;animation:pulse 3s ease-in-out infinite}
+.yt{display:inline-block;margin-top:1.6rem;padding:.8em 1.4em;border:2px solid #00e5ff;border-radius:999px;color:#fff;text-decoration:none;font-family:system-ui,sans-serif;font-weight:700;font-size:clamp(.85rem,2.6vw,1.1rem);background:rgba(10,0,30,.55);box-shadow:0 0 12px #00e5ff,inset 0 0 10px #ff2bd6;text-shadow:0 0 8px #00e5ff}
+body{overflow-y:auto}
 </style></head><body>
 <canvas id="p"></canvas>
-<main><p class="kick">COUNTDOWN TO</p><h1>November 1st</h1>
+<main><h2 class="theme">November's Theme Music</h2><p class="kick">COUNTDOWN TO</p><h1>November 1st</h1>
 <div id="c">
 <div class="b" style="--c:#ff2bd6"><div class="n" id="d">0</div><div class="l">DAYS</div></div>
 <div class="b" style="--c:#b04bff"><div class="n" id="h">00</div><div class="l">HOURS</div></div>
 <div class="b" style="--c:#00e5ff"><div class="n" id="m">00</div><div class="l">MINUTES</div></div>
 <div class="b" style="--c:#ff4fa0"><div class="n" id="s">00</div><div class="l">SECONDS</div></div>
-</div><div id="u">Time's up!</div></main>
+</div><div id="u">Time's up!</div>
+<a class="yt" href="https://www.youtube.com/watch?v=cBPKQWPW5gM&t=934s" target="_blank" rel="noopener">&#9654; Play the theme on YouTube (from 15:34)</a></main>
 <script>
 var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
 function set(id,v){var e=document.getElementById(id);if(e.textContent!=v){e.textContent=v;e.classList.remove('tick');void e.offsetWidth;e.classList.add('tick')}}
