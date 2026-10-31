@@ -5,12 +5,45 @@
 <meta property="og:url" content="https://krepchin.github.io/countdown/"><meta property="og:type" content="website"><meta property="og:image" content="https://krepchin.github.io/countdown/og.png">
 <meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://krepchin.github.io/countdown/og.png">
-<style>body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#0e111c;color:#fff;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;text-align:center}
-h1{font-size:clamp(1.5rem,5vw,3rem);margin:0 1rem 2rem;color:#c8d4f0}#c{display:flex;gap:clamp(.5rem,3vw,2rem);flex-wrap:wrap;justify-content:center}
-.b{background:#1a2033;border-radius:16px;padding:1rem;min-width:clamp(70px,18vw,160px)}.n{font-size:clamp(2.5rem,10vw,6rem);font-weight:700;font-variant-numeric:tabular-nums}.l{color:#ffbe50;text-transform:uppercase;letter-spacing:.1em;font-size:clamp(.7rem,2vw,1rem)}
-#u{font-size:clamp(2.5rem,10vw,6rem);font-weight:700;color:#ffbe50;display:none}</style></head><body>
-<h1>Countdown to November 1st</h1><div id="c"><div class="b"><div class="n" id="d">0</div><div class="l">Days</div></div><div class="b"><div class="n" id="h">00</div><div class="l">Hours</div></div><div class="b"><div class="n" id="m">00</div><div class="l">Minutes</div></div><div class="b"><div class="n" id="s">00</div><div class="l">Seconds</div></div></div><div id="u">Time's up!</div>
-<script>var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
+<style>
+*{box-sizing:border-box}html,body{height:100%}
+body{margin:0;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden;color:#fff;text-align:center;
+font-family:"Impact","Haettenschweiler","Arial Narrow Bold","Franklin Gothic Heavy",system-ui,sans-serif;
+background:linear-gradient(120deg,#12002b,#2a0045,#00203a,#3a0030,#12002b);background-size:400% 400%;animation:bg 18s ease infinite}
+@keyframes bg{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}
+#p{position:fixed;inset:0;pointer-events:none;z-index:0}
+main{position:relative;z-index:1;padding:1rem}
+.kick{font-size:clamp(.9rem,3vw,1.5rem);letter-spacing:.35em;color:#0ff;text-shadow:0 0 6px #0ff,0 0 18px #0ff;margin:0}
+h1{margin:.2em 0 .8em;font-size:clamp(2.4rem,10vw,6.5rem);letter-spacing:.04em;text-transform:uppercase;color:#fff;
+text-shadow:0 0 6px #fff,0 0 14px #ff2bd6,0 0 30px #ff2bd6,0 0 60px #b04bff;animation:pulse 2.4s ease-in-out infinite}
+@keyframes pulse{50%{text-shadow:0 0 4px #fff,0 0 10px #ff2bd6,0 0 20px #ff2bd6,0 0 36px #b04bff;opacity:.92}}
+#c{display:flex;gap:clamp(.4rem,2.5vw,1.6rem);justify-content:center;flex-wrap:wrap}
+.b{min-width:clamp(68px,20vw,170px);padding:clamp(.6rem,2vw,1.2rem) .5rem;border-radius:18px;background:rgba(10,0,30,.55);
+border:2px solid var(--c);box-shadow:0 0 12px var(--c),inset 0 0 14px var(--c)}
+.n{font-size:clamp(2.6rem,11vw,7rem);line-height:1;font-variant-numeric:tabular-nums;color:#fff;
+text-shadow:0 0 5px #fff,0 0 12px var(--c),0 0 28px var(--c),0 0 50px var(--c)}
+.l{margin-top:.4em;font-family:system-ui,sans-serif;font-weight:700;letter-spacing:.25em;font-size:clamp(.6rem,2vw,.95rem);color:var(--c);text-shadow:0 0 8px var(--c)}
+.tick{animation:tick .45s ease-out}
+@keyframes tick{0%{transform:scale(1.18);filter:brightness(1.8)}100%{transform:scale(1);filter:none}}
+#u{display:none;font-size:clamp(3rem,13vw,8rem);color:#fff;text-shadow:0 0 8px #fff,0 0 22px #0ff,0 0 44px #ff2bd6;animation:pulse 1s infinite}
+</style></head><body>
+<canvas id="p"></canvas>
+<main><p class="kick">COUNTDOWN TO</p><h1>November 1st</h1>
+<div id="c">
+<div class="b" style="--c:#ff2bd6"><div class="n" id="d">0</div><div class="l">DAYS</div></div>
+<div class="b" style="--c:#b04bff"><div class="n" id="h">00</div><div class="l">HOURS</div></div>
+<div class="b" style="--c:#00e5ff"><div class="n" id="m">00</div><div class="l">MINUTES</div></div>
+<div class="b" style="--c:#ff4fa0"><div class="n" id="s">00</div><div class="l">SECONDS</div></div>
+</div><div id="u">Time's up!</div></main>
+<script>
+var T=Date.UTC(2026,10,1,6,0,0);function p(x){return(x<10?'0':'')+x}
+function set(id,v){var e=document.getElementById(id);if(e.textContent!=v){e.textContent=v;e.classList.remove('tick');void e.offsetWidth;e.classList.add('tick')}}
 function t(){var r=Math.floor((T-Date.now())/1000);if(r<=0){document.getElementById('c').style.display='none';document.getElementById('u').style.display='block';return}
-document.getElementById('d').textContent=Math.floor(r/86400);document.getElementById('h').textContent=p(Math.floor(r%86400/3600));document.getElementById('m').textContent=p(Math.floor(r%3600/60));document.getElementById('s').textContent=p(r%60)}
-t();setInterval(t,1000);</script></body></html>
+set('d',''+Math.floor(r/86400));set('h',p(Math.floor(r%86400/3600)));set('m',p(Math.floor(r%3600/60)));set('s',p(r%60))}
+t();setInterval(t,1000);
+(function(){var c=document.getElementById('p'),x=c.getContext('2d'),P=[],C=['#ff2bd6','#00e5ff','#b04bff'];
+function rs(){c.width=innerWidth;c.height=innerHeight}rs();addEventListener('resize',rs);
+for(var i=0;i<45;i++)P.push({x:Math.random(),y:Math.random(),r:1+Math.random()*2.5,v:.0004+Math.random()*.0012,c:C[i%3]});
+(function f(){x.clearRect(0,0,c.width,c.height);P.forEach(function(q){q.y-=q.v;if(q.y<0)q.y=1;x.beginPath();x.fillStyle=q.c;x.shadowColor=q.c;x.shadowBlur=12;
+x.arc(q.x*c.width,q.y*c.height,q.r,0,7);x.fill()});requestAnimationFrame(f)})()})();
+</script></body></html>
